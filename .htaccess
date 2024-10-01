@@ -1,0 +1,14 @@
+# Server Options
+Options -Indexes
+CheckSpelling Off
+RewriteEngine On
+
+# PHP Options
+AddType x-httpd-php71 .php
+
+# HTTPS Enforcement
+RewriteCond %{HTTP:X-Forwarded-Proto} !https [OR]
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} .co.uk [OR]
+RewriteCond %{HTTP_HOST} .com
+RewriteRule ^(.*)$ https://scalemail.lairoftheraven.uk/$1 [L,R=301]
